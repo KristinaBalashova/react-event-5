@@ -15,6 +15,7 @@ import Button from '@mui/material/Button';
 import ThemeSwitcher from './ThemeSwitcher';
 import FormComponent from './FormComponent';
 import { DialogModal } from './DialogModal';
+import CardComponent from './CardComponent';
 
 const drawerWidth = 240;
 const navItems = ['Home', 'About', 'Contact'];
@@ -116,6 +117,7 @@ export default function DrawerAppBar(props) {
       <FormComponent />
       {/* Адаптивное модальное окно для подписки на рассылку */}
       <DialogModal />
+      <CardComponent />
     </ThemeSwitcher>
   );
 }
