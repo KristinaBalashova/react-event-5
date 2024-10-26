@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material';
 import { MainContainer } from '../container/MainContainer';
 import logo from '../../assets/logo.svg';
 
@@ -16,9 +16,9 @@ export const Header = () => {
             <img src={logo} alt="Logo" />
           </Box>
 
-          <Typography variant="body1" color="common.black">
-            Запросы о помощи
-          </Typography>
+          <Link href="/catalog" color="common.black" underline="hover">
+            <Typography variant="body1">Запросы о помощи</Typography>
+          </Link>
 
           <Button
             variant="outlined"
