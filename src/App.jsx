@@ -4,11 +4,14 @@ import ProfilePage from './pages/ProfilePage.jsx';
 import HelpRequestPage from './pages/HelpRequestPage.jsx';
 import CatalogPage from './pages/CatalogPage.jsx';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
+import { Header } from './components/header/Header.jsx';
+import { Footer } from './components/footer/Footer.jsx';
 import './App.css';
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <main>
         <Routes>
           <Route path="/" element={<LoginPage />} />
@@ -38,6 +41,7 @@ function App() {
           />
         </Routes>
       </main>
+      <Footer />
     </BrowserRouter>
   );
 }
