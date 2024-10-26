@@ -1,6 +1,5 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import useUserData from '../store/store';
 
 const HelpRequestPage = () => {
   const { itemId } = useParams();
