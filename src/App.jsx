@@ -6,7 +6,6 @@ import CatalogPage from './pages/CatalogPage.jsx';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx';
 import { Header } from './components/header/Header.jsx';
 import { Footer } from './components/footer/Footer.jsx';
-import './App.css';
 
 function App() {
   return (
