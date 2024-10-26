@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import ToggleButtons from '../ToggleButtons/ToggleButtons';
 import {
   Box,
@@ -9,9 +9,27 @@ import {
   Pagination,
   CircularProgress,
 } from '@mui/material';
+import useFetch from '../../hooks/useFetch.js';
+import RequestCard from '../RequestCard/RequestCard.jsx';
+
+const pageSize = 3;
 
 const RequestsList = () => {
-  const requests = [];
+  const { data, loading, error } = useFetch('/request');
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const handlePageChange = (event, value) => {
+    setCurrentPage(value);
+  };
+
+  useEffect(() => {
+    if (data) {
+      const totalPages = Math.ceil(data.length / pageSize);
+      const startIndex = (currentPage - 1) * pageSize;
+      const endIndex = Math.min(startIndex + pageSize, data.length);
+      const currentData = data.slice(startIndex, endIndex);
+    }
+  }, [data, currentPage]);
 
   return (
     <Box
@@ -42,30 +60,18 @@ const RequestsList = () => {
             color: 'black',
           }}
         >
-          Найдено {requests ? requests.length : 0} запросов
+          Найдено {data ? data.length : 0} запросов
         </Typography>
         <ToggleButtons />
       </Box>
 
       <Grid container spacing={2}>
-        {requests &&
-          requests.map((request, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    {request.title}
-                  </Typography>
-                  {/* Add other request details here */}
-                </CardContent>
-              </Card>
-            </Grid>
-          ))}
+        {data && currentData.map((request, index) => <RequestCard key={index} request={request} />)}
       </Grid>
 
       {/* Pagination block */}
       <Box sx={{ marginTop: 2, display: 'flex', justifyContent: 'center' }}>
-        <Pagination count={10} page={0} onChange={(event, value) => console.log(value)} />
+        {data && <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} />}
       </Box>
     </Box>
   );

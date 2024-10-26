@@ -47,7 +47,7 @@ const captionStyle = {
   color: 'rgba(0, 0, 0, 0.6)',
 };
 
-const RequestCard = () => {
+const RequestCard = ({ request }) => {
   const [favorite, setFavorite] = useState(false);
   const handleFavorite = () => {
     setFavorite(!favorite);

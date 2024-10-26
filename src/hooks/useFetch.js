@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useStore } from '../store/userStore';
+import { useAuthContext } from '../context/AuthContext.jsx';
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -7,8 +7,7 @@ const useFetch = (path) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const storedToken = useStore((state) => state.token);
-  const authToken = storedToken;
+  const { token } = useAuthContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,7 +17,7 @@ const useFetch = (path) => {
         const response = await fetch(url, {
           method: 'GET',
           headers: {
-            Authorization: authToken ? `Bearer ${authToken}` : undefined,
+            Authorization: token ? `Bearer ${token}` : undefined,
             'Content-Type': 'application/json',
           },
         });
@@ -33,13 +32,13 @@ const useFetch = (path) => {
         setLoading(false);
       }
     };
-    if (authToken) {
+    if (token) {
       fetchData();
     } else {
       setLoading(false);
       setError(new Error('No token available'));
     }
-  }, [path, authToken]);
+  }, [path, token]);
 
   return { data, loading, error };
 };
