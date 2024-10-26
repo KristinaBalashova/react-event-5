@@ -4,8 +4,6 @@ This repository is for the React project of Hackathon Team 5.
 
 # Team
 
-<<<<<<< HEAD
-=======
 - ![Kristina](https://github.com/KristinaBalashova)
 - ![Pavel](https://github.com/Developer2220)
 - ![Elvira](https://github.com/Elvira-del)
@@ -25,7 +23,6 @@ This repository is for the React project of Hackathon Team 5.
 ![Toastify](https://img.shields.io/badge/Toastify-FF3D00?style=for-the-badge&logo=react&logoColor=white)
 ![MUI](https://img.shields.io/badge/MUI-007FFF?style=for-the-badge&logo=mui&logoColor=white)
 
->>>>>>> 813c5fb2f6b806d626940d052c1aedb4b3085b64
 ## Installation
 
 To run the project locally, follow these steps:
