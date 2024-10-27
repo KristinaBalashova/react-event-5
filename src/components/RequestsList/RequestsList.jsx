@@ -72,6 +72,7 @@ const RequestsList = () => {
             .map((request, index) => (
               <RequestCard
                 key={index}
+                variant="full"
                 image="src/assets/image-card.svg"
                 title={request?.title.split(']')[1] || ''}
                 organization={request?.organization?.title || ''}

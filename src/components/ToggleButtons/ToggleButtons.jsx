@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Box, Button } from '@mui/material';
 
 const ToggleButtons = () => {
   const [activeButton, setActiveButton] = useState(null);
@@ -14,28 +15,28 @@ const ToggleButtons = () => {
   };
 
   return (
-    <div style={{ display: 'flex' }}>
-      {buttons.map((button) => (
-        <div
+    <Box style={{ display: 'flex', border: '2px solid rgba(0, 0, 0, 0.08)', borderRadius: '4px' }}>
+      {buttons.map((button, index) => (
+        <Button
           key={button.id}
           onClick={() => handleButtonClick(button.id)}
-          style={{
-            width: '24px',
-            height: '24px',
+          sx={{
+            width: '40px',
+            height: '40px',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             backgroundColor: activeButton === button.id ? 'rgba(0, 0, 0, 0.08)' : '#ffffff',
-            border: '2px solid rgba(0, 0, 0, 0.08)',
-            borderRadius: '2px',
+            borderLeft: index > 0 ? '2px solid rgba(0, 0, 0, 0.08)' : 'none',
             cursor: 'pointer',
-            padding: '5px',
+            padding: 0,
+            minWidth: '0px'
           }}
         >
-          <img src={button.url} alt={button.label} />
-        </div>
+          <img src={button.url} alt={button.label} style={{ width: '20px', height: '20px' }} />
+        </Button>
       ))}
-    </div>
+    </Box>
   );
 };
 

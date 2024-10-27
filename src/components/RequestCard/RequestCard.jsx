@@ -35,7 +35,9 @@ const captionStyle = {
   color: 'rgba(0, 0, 0, 0.6)',
 };
 
+// variant = "full" | "short"
 const RequestCard = ({
+  variant,
   image,
   title,
   organization,
@@ -52,54 +54,77 @@ const RequestCard = ({
   };
 
   return (
-    <Card sx={{ width: 320, height: 843, borderRadius: '4px' }}>
-      <CardMedia
-        sx={{ objectFit: 'contain' }}
-        component="img"
-        height="220"
-        image={image}
-        alt="frontend"
-      />
-      <CardHeader
-        align="left"
-        action={
-          <IconButton
-            sx={{
-              border: '1px solid rgba(0, 0, 0, 0.12)',
-              borderRadius: '4px',
-              padding: '4px',
-              width: '32px',
-              height: '32px',
-            }}
-            aria-label="favorites"
-            onClick={handleFavorite}
-          >
-            {favorite ? <StarIcon /> : <StarBorderIcon />}
-          </IconButton>
-        }
-        title={title}
-      />
+    <Card sx={{ width: 320, borderRadius: '4px' }}>
+      {variant === 'full' && (
+        <>
+          <CardMedia
+            sx={{ objectFit: 'contain' }}
+            component="img"
+            height="220"
+            image={image}
+            alt="frontend"
+          />
+          <CardHeader
+            align="left"
+            action={
+              <IconButton
+                sx={{
+                  border: '1px solid rgba(0, 0, 0, 0.12)',
+                  borderRadius: '4px',
+                  padding: '4px',
+                  width: '32px',
+                  height: '32px',
+                }}
+                aria-label="favorites"
+                onClick={handleFavorite}
+              >
+                {favorite ? <StarIcon /> : <StarBorderIcon />}
+              </IconButton>
+            }
+            title={title}
+          />
+        </>
+      )}
+
+      {variant === 'short' && (
+        <Typography variant="h6" sx={{ mb: '10px', p: '20px 16px 0' }}>
+          Вместе для добрых дел
+        </Typography>
+      )}
+
       <CardContent sx={{ padding: '0' }}>
-        <Box sx={{ height: 402, padding: '10px 16px 20px 16px' }}>
-          <Box sx={{ marginBottom: '20px' }}>
-            <Typography align="left" sx={titleStyles}>
-              Организатор
-            </Typography>
-            <Typography align="left" sx={contentStyles}>
-              {organization}
-            </Typography>
-          </Box>
-          <Box sx={{ marginBottom: '20px' }}>
-            <Typography align="left" sx={titleStyles}>
-              Локация
-            </Typography>
-            <Typography align="left" sx={contentStyles}>
-              {location?.district || ''}
-              <br />
-              {location?.city || ''}
-            </Typography>
-          </Box>
-          <Box sx={{ marginBottom: '20px' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 2.5,
+            padding: '10px 16px 20px 16px',
+          }}
+        >
+          {variant === 'full' && (
+            <>
+              <Box>
+                <Typography align="left" sx={titleStyles}>
+                  Организатор
+                </Typography>
+                <Typography align="left" sx={contentStyles}>
+                  {organization}
+                </Typography>
+              </Box>
+              <Box>
+                <Typography align="left" sx={titleStyles}>
+                  Локация
+                </Typography>
+                <Typography align="left" sx={contentStyles}>
+                  {location?.district || ''}
+                  <br />
+                  {location?.city || ''}
+                </Typography>
+              </Box>
+            </>
+          )}
+
+          <Box>
             <Typography align="left" sx={titleStyles}>
               Цель сбора
             </Typography>
@@ -107,7 +132,7 @@ const RequestCard = ({
               {goalDescription}
             </Typography>
           </Box>
-          <Box sx={{ marginBottom: '20px' }}>
+          <Box>
             <Typography align="left" sx={titleStyles}>
               Завершение
             </Typography>
@@ -164,12 +189,12 @@ const RequestCard = ({
           </Typography>
           <Button
             variant="contained"
+            size="large"
             sx={{
               borderRadius: '4px',
               padding: '8px 24px',
-              width: 288,
-              height: 42,
               marginTop: '10px',
+              width: '100%',
             }}
           >
             Помочь

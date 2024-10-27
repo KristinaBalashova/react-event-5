@@ -8,13 +8,13 @@ import AuthPage from './pages/AuthPage.jsx';
 import { Header } from './components/header/Header.jsx';
 import { Footer } from './components/footer/Footer.jsx';
 import { AuthContextProvider } from './context/AuthContext.jsx';
-
+import { MainContainer } from './components/container/MainContainer.jsx';
 function App() {
   return (
     <AuthContextProvider>
       <BrowserRouter>
         <Header />
-        <main>
+        <MainContainer>
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route
@@ -50,7 +50,7 @@ function App() {
               }
             />
           </Routes>
-        </main>
+        </MainContainer>
         <Footer />
       </BrowserRouter>
     </AuthContextProvider>
