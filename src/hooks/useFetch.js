@@ -7,7 +7,7 @@ const useFetch = (path) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { token } = useAuthContext();
+  const { token, login } = useAuthContext();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -22,7 +22,25 @@ const useFetch = (path) => {
           },
         });
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          if (response.status === 401) {
+            // Обработка ошибки 401 (Unauthorized) - обновление токена
+            const refreshResponse = await fetch(`${API_BASE_URL}/refresh_token`, {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'application/json',
+              },
+            });
+            if (refreshResponse.ok) {
+              const newToken = await refreshResponse.json();
+              login(newToken); // Обновляем токен в контексте
+              fetchData(); // Повторно отправляем запрос с новым токеном
+            } else {
+              throw new Error('Failed to refresh token');
+            }
+          } else {
+            throw new Error('Network response was not ok');
+          }
         }
         const result = await response.json();
         setData(result);

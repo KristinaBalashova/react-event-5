@@ -59,7 +59,7 @@ const RequestCard = ({ request }) => {
         sx={{ objectFit: 'contain' }}
         component="img"
         height="220"
-        image={card.image}
+        image="src/assets/image-card.svg"
         alt="frontend"
       />
       <CardHeader
@@ -79,7 +79,7 @@ const RequestCard = ({ request }) => {
             {favorite ? <StarIcon /> : <StarBorderIcon />}
           </IconButton>
         }
-        title={card.title}
+        title={request?.title.split(']')[1] || ''}
       />
       <CardContent sx={{ padding: '0' }}>
         <Box sx={{ height: 402, padding: '10px 16px 20px 16px' }}>
@@ -88,7 +88,7 @@ const RequestCard = ({ request }) => {
               Организатор
             </Typography>
             <Typography align="left" sx={contentStyles}>
-              {card.organization}
+              {request?.organization?.title || ''}
             </Typography>
           </Box>
           <Box sx={{ marginBottom: '20px' }}>
@@ -96,7 +96,9 @@ const RequestCard = ({ request }) => {
               Локация
             </Typography>
             <Typography align="left" sx={contentStyles}>
-              {card.location}
+              {request?.location?.district || ''}
+              <br />
+              {request?.location?.city || ''}
             </Typography>
           </Box>
           <Box sx={{ marginBottom: '20px' }}>
@@ -104,7 +106,7 @@ const RequestCard = ({ request }) => {
               Цель сбора
             </Typography>
             <Typography align="left" sx={contentStyles}>
-              {card.goalDescription}
+              {request?.goalDescription || ''}
             </Typography>
           </Box>
           <Box sx={{ marginBottom: '20px' }}>
@@ -112,7 +114,7 @@ const RequestCard = ({ request }) => {
               Завершение
             </Typography>
             <Typography align="left" sx={contentStyles}>
-              {card.endingDate}
+              {request?.endingDate.split('T')[0].split('-').reverse().join('.') || ''}
             </Typography>
           </Box>
           <Box fontSize="0">
@@ -136,9 +138,9 @@ const RequestCard = ({ request }) => {
               disabled={true}
               aria-label="Small"
               valueLabelDisplay="auto"
-              defaultValue={card.requestGoalCurrentValue}
+              defaultValue={request?.requestGoalCurrentValue || 0}
               min={0}
-              max={card.requestGoal}
+              max={request?.requestGoal || 0}
             />
             <Box
               sx={{
@@ -148,8 +150,8 @@ const RequestCard = ({ request }) => {
                 marginTop: '4px',
               }}
             >
-              <Typography sx={captionStyle}>{card.requestGoalCurrentValue} руб</Typography>
-              <Typography sx={captionStyle}>{card.requestGoal} руб</Typography>
+              <Typography sx={captionStyle}>{request?.requestGoalCurrentValue || 0} руб</Typography>
+              <Typography sx={captionStyle}>{request?.requestGoal || 0} руб</Typography>
             </Box>
           </Box>
         </Box>

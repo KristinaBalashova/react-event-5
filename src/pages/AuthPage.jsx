@@ -7,7 +7,7 @@ import { useAuthContext } from '../context/AuthContext';
 const AuthPage = () => {
   const navigate = useNavigate();
   const { authenticate, loading, error } = useAuth();
-  const { login, auth } = useAuthContext();
+  const { login, logout, auth } = useAuthContext();
 
   console.log(auth, 'auth');
 

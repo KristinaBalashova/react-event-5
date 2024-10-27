@@ -22,14 +22,14 @@ const RequestsList = () => {
     setCurrentPage(value);
   };
 
-  useEffect(() => {
+  /* useEffect(() => {
     if (data) {
       const totalPages = Math.ceil(data.length / pageSize);
       const startIndex = (currentPage - 1) * pageSize;
       const endIndex = Math.min(startIndex + pageSize, data.length);
       const currentData = data.slice(startIndex, endIndex);
     }
-  }, [data, currentPage]);
+  }, [data, currentPage]); */
 
   return (
     <Box
@@ -66,12 +66,13 @@ const RequestsList = () => {
       </Box>
 
       <Grid container spacing={2}>
-        {data && currentData.map((request, index) => <RequestCard key={index} request={request} />)}
+        {data &&
+          data.slice(0, 3).map((request, index) => <RequestCard key={index} request={request} />)}
       </Grid>
 
       {/* Pagination block */}
       <Box sx={{ marginTop: 2, display: 'flex', justifyContent: 'center' }}>
-        {data && <Pagination count={totalPages} page={currentPage} onChange={handlePageChange} />}
+        {data && <Pagination count={10} page={1} onChange={handlePageChange} />}
       </Box>
     </Box>
   );
