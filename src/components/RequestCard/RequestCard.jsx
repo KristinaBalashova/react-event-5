@@ -12,18 +12,6 @@ import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
 
-const card = {
-  image: 'src/assets/image-card.svg',
-  title: 'Сбор средств для пенсионерки Ангелины Ивановны',
-  organization: 'Фонд помощи для ветеранов и инвалидов "Вера"',
-  location: 'Область: Владимирская Населенный пункт: Владимир',
-  goalDescription: 'Оплатить лечение МКБ в клинике "Здоровье". Купить одежду на...',
-  endingDate: '20.03.2025',
-  requestGoalCurrentValue: 1102563,
-  requestGoal: 2056489,
-  contributorsCount: 3566987,
-};
-
 const titleStyles = {
   fontWeight: 500,
   fontSize: '14px',
@@ -47,7 +35,17 @@ const captionStyle = {
   color: 'rgba(0, 0, 0, 0.6)',
 };
 
-const RequestCard = ({ request }) => {
+const RequestCard = ({
+  image,
+  title,
+  organization,
+  location,
+  goalDescription,
+  endingDate,
+  requestGoalCurrentValue,
+  requestGoal,
+  contributorsCount,
+}) => {
   const [favorite, setFavorite] = useState(false);
   const handleFavorite = () => {
     setFavorite(!favorite);
@@ -59,7 +57,7 @@ const RequestCard = ({ request }) => {
         sx={{ objectFit: 'contain' }}
         component="img"
         height="220"
-        image="src/assets/image-card.svg"
+        image={image}
         alt="frontend"
       />
       <CardHeader
@@ -79,7 +77,7 @@ const RequestCard = ({ request }) => {
             {favorite ? <StarIcon /> : <StarBorderIcon />}
           </IconButton>
         }
-        title={request?.title.split(']')[1] || ''}
+        title={title}
       />
       <CardContent sx={{ padding: '0' }}>
         <Box sx={{ height: 402, padding: '10px 16px 20px 16px' }}>
@@ -88,7 +86,7 @@ const RequestCard = ({ request }) => {
               Организатор
             </Typography>
             <Typography align="left" sx={contentStyles}>
-              {request?.organization?.title || ''}
+              {organization}
             </Typography>
           </Box>
           <Box sx={{ marginBottom: '20px' }}>
@@ -96,9 +94,9 @@ const RequestCard = ({ request }) => {
               Локация
             </Typography>
             <Typography align="left" sx={contentStyles}>
-              {request?.location?.district || ''}
+              {location?.district || ''}
               <br />
-              {request?.location?.city || ''}
+              {location?.city || ''}
             </Typography>
           </Box>
           <Box sx={{ marginBottom: '20px' }}>
@@ -106,7 +104,7 @@ const RequestCard = ({ request }) => {
               Цель сбора
             </Typography>
             <Typography align="left" sx={contentStyles}>
-              {request?.goalDescription || ''}
+              {goalDescription}
             </Typography>
           </Box>
           <Box sx={{ marginBottom: '20px' }}>
@@ -114,7 +112,7 @@ const RequestCard = ({ request }) => {
               Завершение
             </Typography>
             <Typography align="left" sx={contentStyles}>
-              {request?.endingDate.split('T')[0].split('-').reverse().join('.') || ''}
+              {endingDate}
             </Typography>
           </Box>
           <Box fontSize="0">
@@ -138,9 +136,9 @@ const RequestCard = ({ request }) => {
               disabled={true}
               aria-label="Small"
               valueLabelDisplay="auto"
-              defaultValue={request?.requestGoalCurrentValue || 0}
+              defaultValue={requestGoalCurrentValue}
               min={0}
-              max={request?.requestGoal || 0}
+              max={requestGoal}
             />
             <Box
               sx={{
@@ -150,8 +148,8 @@ const RequestCard = ({ request }) => {
                 marginTop: '4px',
               }}
             >
-              <Typography sx={captionStyle}>{request?.requestGoalCurrentValue || 0} руб</Typography>
-              <Typography sx={captionStyle}>{request?.requestGoal || 0} руб</Typography>
+              <Typography sx={captionStyle}>{requestGoalCurrentValue} руб</Typography>
+              <Typography sx={captionStyle}>{requestGoal} руб</Typography>
             </Box>
           </Box>
         </Box>
@@ -162,7 +160,7 @@ const RequestCard = ({ request }) => {
           }}
         >
           <Typography align="left" sx={captionStyle}>
-            Нас уже: {card.contributorsCount}
+            Нас уже: {contributorsCount}
           </Typography>
           <Button
             variant="contained"

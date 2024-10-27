@@ -24,6 +24,7 @@ const useFetch = (path) => {
         if (!response.ok) {
           if (response.status === 401) {
             // Обработка ошибки 401 (Unauthorized) - обновление токена
+            console.log('обновление токена');
             const refreshResponse = await fetch(`${API_BASE_URL}/refresh_token`, {
               method: 'POST',
               headers: {

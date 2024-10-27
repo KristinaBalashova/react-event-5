@@ -67,7 +67,22 @@ const RequestsList = () => {
 
       <Grid container spacing={2}>
         {data &&
-          data.slice(0, 3).map((request, index) => <RequestCard key={index} request={request} />)}
+          data
+            .slice(0, 3)
+            .map((request, index) => (
+              <RequestCard
+                key={index}
+                image="src/assets/image-card.svg"
+                title={request?.title.split(']')[1] || ''}
+                organization={request?.organization?.title || ''}
+                location={request?.location || ''}
+                goalDescription={request?.goalDescription || ''}
+                endingDate={request?.endingDate.split('T')[0].split('-').reverse().join('.') || ''}
+                requestGoalCurrentValue={request?.requestGoalCurrentValue || 0}
+                requestGoal={request?.requestGoal || 0}
+                contributorsCount={request?.contributorsCount || 0}
+              />
+            ))}
       </Grid>
 
       {/* Pagination block */}
