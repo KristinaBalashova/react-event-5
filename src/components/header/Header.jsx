@@ -29,9 +29,16 @@ export const Header = () => {
           {auth ? (
             <AccountMenu />
           ) : (
-            <Button variant="outlined" size="large" endIcon={<ChevronRightIcon />} color="inherit">
-              Войти
-            </Button>
+            <Link href="/">
+              <Button
+                variant="outlined"
+                size="large"
+                endIcon={<ChevronRightIcon />}
+                color="inherit"
+              >
+                Войти
+              </Button>
+            </Link>
           )}
         </Toolbar>
       </MainContainer>

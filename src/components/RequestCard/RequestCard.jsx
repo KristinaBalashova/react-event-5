@@ -11,6 +11,7 @@ import StarBorderIcon from '@mui/icons-material/StarBorder';
 import Box from '@mui/material/Box';
 import Slider from '@mui/material/Slider';
 import Button from '@mui/material/Button';
+import { Link } from 'react-router-dom';
 
 const titleStyles = {
   fontWeight: 500,
@@ -47,6 +48,7 @@ const RequestCard = ({
   requestGoalCurrentValue,
   requestGoal,
   contributorsCount,
+  itemId,
 }) => {
   const [favorite, setFavorite] = useState(false);
   const handleFavorite = () => {
@@ -187,18 +189,20 @@ const RequestCard = ({
           <Typography align="left" sx={captionStyle}>
             Нас уже: {contributorsCount}
           </Typography>
-          <Button
-            variant="contained"
-            size="large"
-            sx={{
-              borderRadius: '4px',
-              padding: '8px 24px',
-              marginTop: '10px',
-              width: '100%',
-            }}
-          >
-            Помочь
-          </Button>
+          <Link to={`/help-request/${itemId}`}>
+            <Button
+              variant="contained"
+              size="large"
+              sx={{
+                borderRadius: '4px',
+                padding: '8px 24px',
+                marginTop: '10px',
+                width: '100%',
+              }}
+            >
+              Помочь
+            </Button>
+          </Link>
         </Box>
       </CardContent>
     </Card>

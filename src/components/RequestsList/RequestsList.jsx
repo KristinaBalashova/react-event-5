@@ -66,26 +66,29 @@ const RequestsList = ({ data, variant }) => {
         </Box>
       )}
 
-      <Grid container spacing={3} sx={{
-        margin: '20px 0px 30px 0px',
-      }}>
-        {data
-            .slice(0, 3)
-            .map((request, index) => (
-              <RequestCard
-                key={index}
-                variant="full"
-                image="src/assets/image-card.svg"
-                title={request?.title.split(']')[1] || ''}
-                organization={request?.organization?.title || ''}
-                location={request?.location || ''}
-                goalDescription={request?.goalDescription || ''}
-                endingDate={request?.endingDate.split('T')[0].split('-').reverse().join('.') || ''}
-                requestGoalCurrentValue={request?.requestGoalCurrentValue || 0}
-                requestGoal={request?.requestGoal || 0}
-                contributorsCount={request?.contributorsCount || 0}
-              />
-            ))}
+      <Grid
+        container
+        spacing={3}
+        sx={{
+          margin: '20px 0px 30px 0px',
+        }}
+      >
+        {data.slice(0, 3).map((request, index) => (
+          <RequestCard
+            key={index}
+            variant="full"
+            image="src/assets/image-card.svg"
+            title={request?.title.split(']')[1] || ''}
+            organization={request?.organization?.title || ''}
+            location={request?.location || ''}
+            goalDescription={request?.goalDescription || ''}
+            endingDate={request?.endingDate.split('T')[0].split('-').reverse().join('.') || ''}
+            requestGoalCurrentValue={request?.requestGoalCurrentValue || 0}
+            requestGoal={request?.requestGoal || 0}
+            contributorsCount={request?.contributorsCount || 0}
+            itemId={request?.id || ''}
+          />
+        ))}
       </Grid>
 
       {/* Pagination block */}

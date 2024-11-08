@@ -5,10 +5,11 @@ import Search from '../components/Search/Search';
 import { Box } from '@mui/material';
 import FilterPanel from '../components/FilterPanel/FilterPanel';
 import useFetch from '../hooks/useFetch';
+import { useTheme } from '@mui/material/styles';
 
 const CatalogPage = () => {
   const { data, loading, error } = useFetch('/request');
-  console.log(data, 'data');
+  const theme = useTheme();
 
   return (
     <Box
@@ -17,7 +18,7 @@ const CatalogPage = () => {
         gap: '20px',
         height: '100%',
         padding: '30px 40px',
-        backgroundColor: '#F5F5F5',
+        backgroundColor: theme.palette.background.primary,
         maxWidth: '1500px',
       }}
     >
@@ -31,7 +32,7 @@ const CatalogPage = () => {
         }}
       >
         <Search />
-        {data && <RequestsList data={data}  variant={'catalog'}/>}
+        {data && <RequestsList data={data} variant={'catalog'} />}
       </Box>
     </Box>
   );
