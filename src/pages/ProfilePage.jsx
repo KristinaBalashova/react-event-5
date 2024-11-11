@@ -7,6 +7,8 @@ import { MainContainer } from '../components/container/MainContainer';
 const ProfilePage = () => {
   const { data } = useFetch('/user');
 
+  console.log('Data:', data);
+
   return (
     <Paper variant="outlined" component="section" sx={{ backgroundColor: '#F5F5F5' }}>
       <Box sx={{ p: '30px 40px 64px' }}>

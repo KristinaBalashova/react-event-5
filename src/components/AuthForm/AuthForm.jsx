@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 
-
 const AuthForm = ({ testProfiles }) => {
   const {
     register,
@@ -35,7 +34,6 @@ const AuthForm = ({ testProfiles }) => {
       setError('password', { type: 'manual', message: 'Неверный логин или пароль' });
       return;
     }
-
 
     const result = await authenticate(formData);
     if (result) {

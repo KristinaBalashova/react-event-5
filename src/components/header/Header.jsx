@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { MainContainer } from '../container/MainContainer';
-import logo from '../../assets/logo.svg';
+import LogoIcon from '../../assets/logo.svg?react';
 import { useAuthContext } from '../../context/AuthContext';
 import AccountMenu from '../AccountMenu/AccountMenu';
 
@@ -19,7 +19,7 @@ export const Header = () => {
       <MainContainer>
         <Toolbar sx={{ justifyContent: 'space-between', alignItems: 'center', paddingBlock: 1.5 }}>
           <Box>
-            <img src={logo} alt="" />
+            <LogoIcon />
           </Box>
 
           <Link href="/catalog" color="common.black" underline="hover">
