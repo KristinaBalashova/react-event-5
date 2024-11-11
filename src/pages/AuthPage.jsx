@@ -1,4 +1,3 @@
-
 import AuthForm from '../components/AuthForm/AuthForm';
 import useAuth from '../hooks/useAuth';
 
@@ -34,7 +33,7 @@ const AuthPage = () => {
             </Typography>
             {error && <p style={{ color: 'red' }}>{error}</p>}
             {/* Размещаем контейнер для уведомлений */}
-            <AuthForm  testProfiles={testProfiles} />
+            <AuthForm testProfiles={testProfiles} />
             {loading && <p>Авторизация...</p>}
           </Box>
         </Grid>

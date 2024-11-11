@@ -13,9 +13,9 @@ import {
   Typography,
 } from '@mui/material';
 import { ProfilePanel } from '../profile/ProfilePanel';
-import telegramIcon from '../../assets/telegram.svg';
-import vkIcon from '../../assets/vk.svg';
-import whatsappIcon from '../../assets/whatsapp.svg';
+import TelegramIcon from '../../assets/telegram.svg?react';
+import VkIcon from '../../assets/vk.svg?react';
+import WhatsappIcon from '../../assets/whatsapp.svg?react';
 import RequestsList from '../RequestsList/RequestsList';
 import ToggleButtons from '../ToggleButtons/ToggleButtons';
 
@@ -217,7 +217,7 @@ export const ProfileTabs = ({ userData }) => {
           <List sx={{ ...listStyle, display: 'flex', flexDirection: 'column', gap: 1 }}>
             <ListItem disablePadding>
               <ListItemIcon>
-                <img src={vkIcon} alt="" width="24" height="24" />
+                <VkIcon />
               </ListItemIcon>
               <Link
                 color="inherit"
@@ -232,7 +232,7 @@ export const ProfileTabs = ({ userData }) => {
 
             <ListItem disablePadding>
               <ListItemIcon>
-                <img src={telegramIcon} alt="" width="24" height="24" />
+                <TelegramIcon />
               </ListItemIcon>
               <Link
                 color="inherit"
@@ -247,7 +247,7 @@ export const ProfileTabs = ({ userData }) => {
 
             <ListItem disablePadding>
               <ListItemIcon>
-                <img src={whatsappIcon} alt="" width="24" height="24" />
+                <WhatsappIcon />
               </ListItemIcon>
               <Link
                 color="inherit"

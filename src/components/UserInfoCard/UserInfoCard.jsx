@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useAuthContext } from '../../context/AuthContext';
-import avatar from '../../assets/avatar.svg';
+import AvatarIcon from '../../assets/avatar.svg?react';
 
 export const UserInfoCard = ({ userData }) => {
   const { auth, logout } = useAuthContext();
@@ -32,7 +32,7 @@ export const UserInfoCard = ({ userData }) => {
         }}
       >
         <CardMedia sx={{ p: '40px 53px' }}>
-          <img src={avatar} alt="" />
+          <AvatarIcon />
         </CardMedia>
         <Divider />
         <CardContent sx={{ p: 2.5, textAlign: 'left' }}>
